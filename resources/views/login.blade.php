@@ -22,9 +22,9 @@
                 <form action="/login" method="POST">
                     @csrf
 
-                    <input type="email" class="input validator" required placeholder="Email" />
+                    <input name="email" type="email" class="input validator" required placeholder="Email" />
                     <div class="validator-hint mt-0">Enter valid email address</div>
-                    <input type="password" class="input mb-7" placeholder="Password" />
+                    <input name="password" type="password" class="input mb-7" placeholder="Password" />
                     <div class="grid justify-items-end">
                         <button type="submit" class="btn">
                             Sign In
