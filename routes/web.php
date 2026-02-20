@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+Route::get('/', [ProjectController::class, 'show'])->middleware('auth');
+Route::post('/projects/store', [ProjectController::class, 'store'])->middleware('auth');
+Route::get('/projects/create', function() {
+    return view('create-project');
+});
 
 Route::get('/login', function () {
     return view('login');
