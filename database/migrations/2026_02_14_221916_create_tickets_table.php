@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('subject', 255);
             $table->text('description');
             $table->string('status', 50);
-            $table->foreignId('assignee_id')->nullable()->constrained(table: 'user_id', indexName: 'tickets_assignee_id')->nullOnDelete();
-            $table->foreignId('author_id')->nullable()->constrained(table: 'user_id', indexName: 'tickets_author_id')->nullOnDelete();
+            $table->foreignId('assignee_id')->nullable()->constrained(table: 'users', indexName: 'tickets_assignee_id')->nullOnDelete();
+            $table->foreignId('author_id')->nullable()->constrained(table: 'users', indexName: 'tickets_author_id')->nullOnDelete();
             $table->foreignId('project_id')->constrained()->nullOnDelete();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -12,7 +13,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('home', [
+            'projects' => Project::all()
+        ]);
     }
 
     /**
@@ -43,8 +46,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('home', [
-            'projects' => Project::all()
+        $tickets = Ticket::where('project_id', $project->id)->get();
+        return view('project', [
+            'project' => $project,
+            'tickets' => $tickets
         ]);
     }
 
