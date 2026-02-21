@@ -30,4 +30,6 @@ Route::get('/projects/{project}', [ProjectController::class, 'show'])->middlewar
 Route::get('/projects/{project}/tickets/create', [TicketController::class, 'create'])->middleware('auth');
 Route::post('/projects/{project}/tickets/store', [TicketController::class, 'store'])->middleware('auth');
 
+Route::get('/projects/{project}/tickets/{ticket}', [TicketController::class, 'show'])->middleware('auth');
+
 

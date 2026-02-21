@@ -25,4 +25,24 @@ class Ticket extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function statusDisplayVal()
+    {
+        $displayVal = '';
+
+        switch($this->status) {
+            case 'todo':
+                return 'To Do';
+                break;
+            case 'doing':
+                return 'Doing';
+                break;
+            case 'done':
+                return 'Done';
+                break;
+            default:
+                return "";
+                break;
+        }
+    }
 }

@@ -36,7 +36,7 @@ class TicketController extends Controller
     public function store(Request $request, Project $project)
     {
         $project_id = $project->id;
-        
+
         $ticket = Ticket::create([
             'subject' => $request->input('subject'),
             'description' => $request->input('description'),
@@ -54,9 +54,12 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(Project $project, Ticket $ticket)
     {
-        //
+        return view('ticket.show', [
+            'ticket' => $ticket,
+            'project' => $project
+        ]);
     }
 
     /**

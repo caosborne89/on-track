@@ -23,13 +23,12 @@
                     <tbody>
                     <!-- row 1 -->
                      @foreach($tickets as $ticket)
-                     {{-- {{ dd($ticket) }} --}}
-                        <tr>
-                            <th>{{ $ticket->id }}</th>
-                            <td>{{ $ticket->subject }}</td>
-                            <td>{{ $ticket->assignee->name }}</td>
-                            <td>{{ $ticket->updated_at }}</td>
-                        </tr>
+                            <tr class="hover:bg-gray-100">
+                                <th>{{ $ticket->id }}</th>
+                                <td><a class="underline" href="/projects/{{ $project->id }}/tickets/{{ $ticket->id }}">{{ $ticket->subject }}</a></td>
+                                <td>{{ $ticket->assignee->name }}</td>
+                                <td>{{ $ticket->updated_at }}</td>
+                            </tr>
                     @endforeach
                     </tbody>
                 </table>
