@@ -37,11 +37,18 @@ class TicketController extends Controller
     {
         $project_id = $project->id;
 
+        $validated = $request->validate([
+            'subject' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1024'],
+            'status' => ['required', 'string', 'max:255'],
+            'assignee' => ['required', 'integer']
+        ]);
+
         $ticket = Ticket::create([
-            'subject' => $request->input('subject'),
-            'description' => $request->input('description'),
-            'status' => $request->input('status'),
-            'assignee_id' => $request->input('assignee'),
+            'subject' => $validated['subject'],
+            'description' => $validated['description'],
+            'status' => $validated['status'],
+            'assignee_id' => $validated['assignee'],
             'author_id' => Auth::id(),
             'project_id' => $project_id, 
         ]);

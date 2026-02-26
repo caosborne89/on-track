@@ -7,12 +7,12 @@ use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth.login');
 })->name('login');
 
 
 Route::get('/register', function() {
-    return view('register');
+    return view('auth.register');
 });
 
 Route::post('/register', Register::class);
@@ -22,7 +22,7 @@ Route::post('/login', Login::class);
 Route::get('/', [ProjectController::class, 'index'])->middleware('auth');
 Route::post('/projects/store', [ProjectController::class, 'store'])->middleware('auth');
 Route::get('/projects/create', function() {
-    return view('create-project');
+    return view('project.create');
 })->middleware('auth');
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->middleware('auth');

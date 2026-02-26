@@ -2,15 +2,6 @@
     <x-slot:title>
         Sign in
     </x-slot>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
     
     <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center">
         <div class="card bg-base-100 w-96 shadow-sm p-9">
@@ -22,9 +13,22 @@
                 <form action="/login" method="POST">
                     @csrf
 
-                    <input name="email" type="email" class="input validator" required placeholder="Email" />
-                    <div class="validator-hint mt-0">Enter valid email address</div>
-                    <input name="password" type="password" class="input mb-7" placeholder="Password" />
+                    <label class="floating-label mb-6">
+                        <input name="email" type="email" class="input validator" required placeholder="Email" value="{{ old('email') }}"/>
+                    </label>
+                    @error('email')
+                    <div class="label mb-2">
+                        <span class="label-text-alt text-error">{{ $message }}</span>
+                    </div>
+                    @enderror
+                    <label class="floating-label mb-6">
+                        <input name="password" type="password" class="input mb-7" placeholder="Password" />
+                    </label>
+                    @error('password')
+                    <div class="label mb-2">
+                        <span class="label-text-alt text-error whitespace-normal break-words">{{ $message }}</span>
+                    </div>
+                    @enderror
                     <div class="grid justify-items-end">
                         <button type="submit" class="btn">
                             Sign In

@@ -24,8 +24,8 @@ class Login extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.'
-        ]);
+        return back()
+        ->withErrors(['email' => 'The provided credentials do not match our records.'])
+        ->onlyInput('email');
     }
 }

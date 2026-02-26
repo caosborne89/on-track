@@ -31,10 +31,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description')
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['max:1024']
         ]);
+
+        $project = Project::create($validated);
 
         $project->save();
 
@@ -47,7 +49,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $tickets = Ticket::where('project_id', $project->id)->get();
-        return view('project', [
+        return view('project.show', [
             'project' => $project,
             'tickets' => $tickets
         ]);

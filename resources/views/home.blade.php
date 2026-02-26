@@ -10,15 +10,14 @@
         </div>
         <div class="mt-[4rem]">
             @foreach($projects as $project)
-            <a href="/projects/{{ $project->id }}">
-                <div class="card w-96 bg-base-100 card-md shadow-sm">
+            <div class="card w-96 bg-base-100 card-md shadow-sm">
+                <a href="/projects/{{ $project->id }}">
                     <div class="card-body">
                         <h2 class="card-title">{{ $project->name }}</h2>
                         <p>{{ $project->description }}</p>
                     </div>
-                </div>
-            </a>
-                
+                </a>
+            </div>
             @endforeach
         </div>
     </div>
