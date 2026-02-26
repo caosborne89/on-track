@@ -9,7 +9,18 @@
 </head>
 <body>
     <div class="navbar bg-base-100 shadow-sm">
-        <a class="btn btn-ghost text-xl" href="/">OnTrack</a>
+        <div class="flex-1">
+            <a class="btn btn-ghost text-xl" href="/">OnTrack</a>
+        </div>
+        
+        @auth
+        <div class="flex-none mr-[2rem]">
+        <form method="POST" action="/logout" class="inline">
+            @csrf
+            <button type="submit" class="btn btn-md">Logout</button>
+        </form>
+        </div>
+        @endauth
     </div>
     {{ $slot }}
 </body>

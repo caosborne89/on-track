@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,10 @@ Route::get('/register', function() {
 Route::post('/register', Register::class);
 
 Route::post('/login', Login::class);
+
+Route::post('/logout', Logout::class)
+    ->middleware('auth')
+    ->name('logout');
 
 Route::get('/', [ProjectController::class, 'index'])->middleware('auth');
 Route::post('/projects/store', [ProjectController::class, 'store'])->middleware('auth');
