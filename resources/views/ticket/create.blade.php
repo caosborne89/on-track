@@ -4,19 +4,10 @@
     </x-slot:title>
 
     <div class="m-auto max-w-[80rem]">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="flex items-center mt-[4rem]">
             <h1 class="text-3xl">New ticket</h1>
         </div>
-        <form action="/projects/{{ $project->id }}/tickets/store" method="POST" class="w-full">
+        <form action="/projects/{{ $project->id }}/tickets" method="POST" class="w-full">
             @csrf
 
             <div class="my-[2rem]">

@@ -22,8 +22,11 @@
         </div>
         @endauth
     </div>
-    <div class="m-auto max-w-[80rem] mx-[2rem]">
-        {{ $slot }}
+    <div class="m-auto max-w-[80rem]">
+        <div class="mx-[2rem] mb-[2rem]">
+            {{ $slot }}
+        </div>
+        
     </div>
 </body>
 </html>

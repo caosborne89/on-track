@@ -2,9 +2,8 @@
     <x-slot:title>
         {{ $project->name }}
     </x-slot>
-
     <div>
-        <div class="flex items-center mt-[4rem]>
+        <div class="flex items-center mt-[3rem]"">
             <h1 class="text-3xl">{{$project->name}}</h1>
             <a href="/projects/{{ $project->id }}/tickets/create" class="btn ml-auto">New ticket</a>
         </div>
@@ -22,7 +21,7 @@
                     </thead>
                     <tbody>
                     <!-- row 1 -->
-                     @foreach($tickets as $ticket)
+                        @foreach($tickets as $ticket)
                             <tr class="hover:bg-gray-100">
                                 <th>{{ $ticket->id }}</th>
                                 <td><a class="underline" href="/projects/{{ $project->id }}/tickets/{{ $ticket->id }}">{{ $ticket->subject }}</a></td>
@@ -35,4 +34,5 @@
             </div>
         </div>
     </div>
+    
 </x-layout>

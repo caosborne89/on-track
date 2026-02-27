@@ -8,7 +8,7 @@
             <h1 class="text-3xl mb-6">New project</h1>
         </div>
 
-        <form action="/projects/store" method="POST" class="w-full">
+        <form action="/projects" method="POST" class="w-full">
             @csrf
 
             <div class="mb-6">

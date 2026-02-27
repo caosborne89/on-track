@@ -10,31 +10,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
+Route::post('/login', Login::class);
 
 Route::get('/register', function() {
     return view('auth.register');
 });
-
 Route::post('/register', Register::class);
-
-Route::post('/login', Login::class);
 
 Route::post('/logout', Logout::class)
     ->middleware('auth')
     ->name('logout');
 
-Route::get('/', [ProjectController::class, 'index'])->middleware('auth');
-Route::post('/projects/store', [ProjectController::class, 'store'])->middleware('auth');
-Route::get('/projects/create', function() {
-    return view('project.create');
-})->middleware('auth');
+Route::middleware('auth')->group(function() {
+    Route::get('/', [ProjectController::class, 'index']);
+    Route::resource('projects', ProjectController::class)->only([
+        'store', 'create', 'show'
+    ]);
 
-Route::get('/projects/{project}', [ProjectController::class, 'show'])->middleware('auth');
-
-Route::get('/projects/{project}/tickets/create', [TicketController::class, 'create'])->middleware('auth');
-Route::post('/projects/{project}/tickets/store', [TicketController::class, 'store'])->middleware('auth');
-
-Route::get('/projects/{project}/tickets/{ticket}', [TicketController::class, 'show'])->middleware('auth');
-
-
+    Route::resource('projects.tickets', TicketController::class)->only([
+        'create', 'store', 'show'
+    ]);
+});
