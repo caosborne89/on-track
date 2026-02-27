@@ -24,7 +24,7 @@ Route::post('/logout', Logout::class)
 Route::middleware('auth')->group(function() {
     Route::get('/', [ProjectController::class, 'index']);
     Route::resource('projects', ProjectController::class)->only([
-        'store', 'create', 'show'
+        'store', 'create', 'show', 'edit', 'update'
     ]);
 
     Route::resource('projects.tickets', TicketController::class)->only([

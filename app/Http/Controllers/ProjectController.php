@@ -36,9 +36,8 @@ class ProjectController extends Controller
             'description' => ['max:1024']
         ]);
 
-        $project = Project::create($validated);
+        Project::create($validated);
 
-        $project->save();
 
         return redirect('/');
     }
@@ -60,7 +59,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project.edit', [
+            'project' => $project
+        ]);
     }
 
     /**
@@ -68,7 +69,13 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['max:1024']
+        ]);
+
+        $project->update($validated);
+        return redirect("/projects/$project->id")->with('success', "Updated project $project->name");
     }
 
     /**
