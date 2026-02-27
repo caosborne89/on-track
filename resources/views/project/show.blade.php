@@ -3,8 +3,8 @@
         {{ $project->name }}
     </x-slot>
 
-    <div class="m-auto max-w-[80rem]">
-        <div class="flex items-center mt-[4rem]">
+    <div>
+        <div class="flex items-center mt-[4rem]>
             <h1 class="text-3xl">{{$project->name}}</h1>
             <a href="/projects/{{ $project->id }}/tickets/create" class="btn ml-auto">New ticket</a>
         </div>
