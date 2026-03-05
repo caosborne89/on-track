@@ -28,6 +28,6 @@ Route::middleware('auth')->group(function() {
     ]);
 
     Route::resource('projects.tickets', TicketController::class)->only([
-        'create', 'store', 'show'
+        'create', 'store', 'show', 'edit', 'update'
     ]);
 });

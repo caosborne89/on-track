@@ -72,17 +72,31 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(Project $project, Ticket $ticket)
     {
-        //
+        $users = User::all();
+        return view('ticket.edit', [
+            'ticket' => $ticket,
+            'project' => $project,
+            'users' => $users,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, Project $project, Ticket $ticket)
     {
-        //
+        $validated = $request->validate([
+            'subject' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1024'],
+            'status' => ['required', 'string', 'max:255'],
+            'assignee' => ['required', 'integer']
+        ]);
+
+        $ticket->update($validated);
+
+        return redirect("/projects/$project->id/tickets/$ticket->id")->with('success', "Updated ticket $ticket->id"); 
     }
 
     /**

@@ -29,7 +29,7 @@
             <p>{{ $ticket->description }}</p>
         </div>
         <div class="mt-[3rem]">
-            <a href="#" class="btn ml-auto">Edit</a>
+            <a href="/projects/{{ $project->id}}/tickets/{{ $ticket->id }}/edit" class="btn ml-auto">Edit</a>
         </div>
     </div>
 </x-layout>
